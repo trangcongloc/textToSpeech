@@ -1,0 +1,142 @@
+{
+    "F1": {
+        "name": "en-US-Standard-C",
+        "gender": "FEMALE"
+    },
+    "F10": {
+        "name": "en-US-Wavenet-C",
+        "gender": "FEMALE"
+    },
+    "F11": {
+        "name": "en-US-Wavenet-E",
+        "gender": "FEMALE"
+    },
+    "F12": {
+        "name": "en-US-Wavenet-F",
+        "gender": "FEMALE"
+    },
+    "F13": {
+        "name": "en-US-Neural2-C",
+        "gender": "FEMALE"
+    },
+    "F14": {
+        "name": "en-US-Neural2-E",
+        "gender": "FEMALE"
+    },
+    "F15": {
+        "name": "en-US-Neural2-F",
+        "gender": "FEMALE"
+    },
+    "F16": {
+        "name": "en-US-Neural2-G",
+        "gender": "FEMALE"
+    },
+    "F17": {
+        "name": "en-US-Neural2-H",
+        "gender": "FEMALE"
+    },
+    "F18": {
+        "name": "en-US-Studio-O",
+        "gender": "FEMALE"
+    },
+    "F2": {
+        "name": "en-US-Standard-E",
+        "gender": "FEMALE"
+    },
+    "F3": {
+        "name": "en-US-Standard-F",
+        "gender": "FEMALE"
+    },
+    "F4": {
+        "name": "en-US-Standard-G",
+        "gender": "FEMALE"
+    },
+    "F5": {
+        "name": "en-US-Standard-H",
+        "gender": "FEMALE"
+    },
+    "F6": {
+        "name": "en-US-News-K",
+        "gender": "FEMALE"
+    },
+    "F7": {
+        "name": "en-US-News-L",
+        "gender": "FEMALE"
+    },
+    "F8": {
+        "name": "en-US-Wavenet-G",
+        "gender": "FEMALE"
+    },
+    "F9": {
+        "name": "en-US-Wavenet-H",
+        "gender": "FEMALE"
+    },
+    "M1": {
+        "name": "en-US-Standard-A",
+        "gender": "MALE"
+    },
+    "M10": {
+        "name": "en-US-Wavenet-A",
+        "gender": "MALE"
+    },
+    "M11": {
+        "name": "en-US-Wavenet-B",
+        "gender": "MALE"
+    },
+    "M12": {
+        "name": "en-US-Wavenet-D",
+        "gender": "MALE"
+    },
+    "M13": {
+        "name": "en-US-Neural2-A",
+        "gender": "MALE"
+    },
+    "M14": {
+        "name": "en-US-Neural2-D",
+        "gender": "MALE"
+    },
+    "M15": {
+        "name": "en-US-Neural2-I",
+        "gender": "MALE"
+    },
+    "M16": {
+        "name": "en-US-Neural2-J",
+        "gender": "MALE"
+    },
+    "M17": {
+        "name": "en-US-Studio-M",
+        "gender": "MALE"
+    },
+    "M2": {
+        "name": "en-US-Standard-B",
+        "gender": "MALE"
+    },
+    "M3": {
+        "name": "en-US-Standard-D",
+        "gender": "MALE"
+    },
+    "M4": {
+        "name": "en-US-Standard-I",
+        "gender": "MALE"
+    },
+    "M5": {
+        "name": "en-US-Standard-J",
+        "gender": "MALE"
+    },
+    "M6": {
+        "name": "en-US-News-M",
+        "gender": "MALE"
+    },
+    "M7": {
+        "name": "en-US-News-N",
+        "gender": "MALE"
+    },
+    "M8": {
+        "name": "en-US-Wavenet-I",
+        "gender": "MALE"
+    },
+    "M9": {
+        "name": "en-US-Wavenet-J",
+        "gender": "MALE"
+    }
+}

@@ -1,0 +1,6 @@
+export
+script
+node_modules
+.env
+index2.js
+list.js
