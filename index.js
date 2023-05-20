@@ -1,9 +1,11 @@
-require("dotenv").config();
-const fs = require("fs");
-const util = require("util");
-const readline = require("readline-sync");
-const textToSpeech = require("@google-cloud/text-to-speech");
-const xlsx = require("node-xlsx");
+import fs from "fs";
+import util from "util";
+import readline from "readline-sync";
+import textToSpeech from "@google-cloud/text-to-speech";
+import inquirer from "inquirer";
+import xlsx from "node-xlsx";
+import * as dotenv from "dotenv";
+import chalk from "chalk";
 
 // Create a TextToSpeech client
 const client = new textToSpeech.TextToSpeechClient();
@@ -35,8 +37,8 @@ function assignVoice(script) {
     ];
     // console.log(characters);
     console.log(
-        `> Tìm thấy ${characters.length - 1} nhân vật - ${characters.join(
-            " - "
+        `> Tìm thấy ${characters.length - 1} nhân vật: ${chalk.yellow(
+            characters.join(" - ").slice(0, -2)
         )}`
     ); // Remove undefined character
 
@@ -46,7 +48,7 @@ function assignVoice(script) {
             voiceAssignments[character] = "M17"; // set Default voice for undefined character
         } else {
             let voiceName = readline
-                .question(`>>> Voice cho ${character}: `)
+                .question(`>>> Voice cho ${chalk.yellow(character)}: `)
                 .toUpperCase();
 
             if (Object.keys(voiceList).includes(voiceName)) {
@@ -87,7 +89,7 @@ async function convertTextToVoice(stt, character, text, scriptFolder) {
             "binary"
         );
         console.clear();
-        console.log(`Line ${stt} - ${text} - Done`);
+        console.log(`${stt} - ${text} - Done`);
     } catch (error) {
         // console.error(`Error converting text to voice for ${stt}: ${error}`);
         console.log(error.name);
@@ -95,31 +97,79 @@ async function convertTextToVoice(stt, character, text, scriptFolder) {
 }
 
 async function textToVoice() {
-    console.clear();
-    const scriptNumber = readline.question("> Kịch bản: ");
-    const script = xlsx.parse(
-        `${__dirname}/${scriptPath}/${scriptNumber}.xlsx`
-    );
+    // ! REPLACE WITH INQUIRER
+    // console.clear();
+    // const scriptNumber = readline.question("> Kịch bản: ");
+    // const script = xlsx.parse(`./${scriptPath}/${scriptNumber}.xlsx`);
 
-    const voiceAssignments = assignVoice(script, scriptNumber);
+    // const voiceAssignments = assignVoice(script, scriptNumber);
 
-    if (!fs.existsSync(`./export/${scriptNumber}`)) {
-        fs.mkdirSync(`./export/${scriptNumber}`);
-    }
+    // if (!fs.existsSync(`./export/${scriptNumber}`)) {
+    //     fs.mkdirSync(`./export/${scriptNumber}`);
+    // }
 
-    console.log(`Tạo voice cho ${scriptNumber}...`);
+    // console.log(`Tạo voice cho ${scriptNumber}...`);
 
-    for (const column of script[0].data.slice(1)) {
-        if (column[2] === undefined) continue;
-        await convertTextToVoice(
-            column[0],
-            voiceAssignments[column[1]],
-            column[2],
-            scriptNumber
-        );
-    }
-    console.clear();
-    console.log(`Hoàn thành tạo voice cho ${scriptNumber}`);
+    // for (const column of script[0].data.slice(1)) {
+    //     if (column[2] === undefined) continue;
+    //     await convertTextToVoice(
+    //         column[0],
+    //         voiceAssignments[column[1]],
+    //         column[2],
+    //         scriptNumber
+    //     );
+    // }
+    // // console.clear();
+    // console.log(`Hoàn thành tạo voice cho ${scriptNumber}`);
+
+    fs.readdir("./script", async (err, files) => {
+        const choices = [];
+
+        files.forEach((file) => {
+            if (!file.includes("Zone")) {
+                choices.push(file.replace(/\.[^/.]+$/, ""));
+            }
+        });
+        // console.log(choices);
+        inquirer
+            .prompt([
+                {
+                    type: "list",
+                    name: "theme",
+                    message: "Chọn kịch bản: ",
+                    choices: choices,
+                },
+            ])
+            .then(async (answers) => {
+                const scriptNumber = answers.theme;
+                // console.clear();
+                const script = xlsx.parse(
+                    `./${scriptPath}/${scriptNumber}.xlsx`
+                );
+
+                const voiceAssignments = assignVoice(script, scriptNumber);
+
+                if (!fs.existsSync(`./export/${scriptNumber}`)) {
+                    fs.mkdirSync(`./export/${scriptNumber}`);
+                }
+
+                console.log(`Tạo voice ${chalk.cyan(scriptNumber)}...`);
+
+                for (const column of script[0].data.slice(1)) {
+                    if (column[2] === undefined) continue;
+                    await convertTextToVoice(
+                        column[0],
+                        voiceAssignments[column[1]],
+                        column[2],
+                        scriptNumber
+                    );
+                }
+                // console.clear();
+                console.log(
+                    `>>> Hoàn thành Voice ${chalk.cyan(scriptNumber)} !`
+                );
+            });
+    });
 }
 
 textToVoice().catch((error) => {

@@ -1,10 +1,12 @@
 {
-  "dependencies": {
-    "@google-cloud/text-to-speech": "^4.2.2",
-    "clui": "^0.3.6",
-    "dotenv": "^16.0.3",
-    "inquirer": "^9.2.4",
-    "node-xlsx": "^0.21.2",
-    "readline-sync": "^1.4.10"
-  }
+    "type": "module",
+    "dependencies": {
+        "@google-cloud/text-to-speech": "^4.2.2",
+        "chalk": "^5.2.0",
+        "clui": "^0.3.6",
+        "dotenv": "^16.0.3",
+        "inquirer": "^9.2.4",
+        "node-xlsx": "^0.21.2",
+        "readline-sync": "^1.4.10"
+    }
 }
